@@ -103,4 +103,134 @@ function applyDiscount(cost, discount = .10) {
 
 console.log(applyDiscount(100));
 ```
+## Rest and Spread Operators
+### Rest Operators
+Rest Operators map a set of function arguments into an array. For example:
+```javascript
+function sum(...numbers) {
+    return numbers.reduce(function(prev, current) {
+        return prev + current;
+    })
+}
 
+console.log(sum(1, 2, 3, 4, 5, 6));
+```
+In the code above, the arguments in the function signature are mapped into the ...numbers argument in the declaration. Perfect for use with a map or a reduce whilst keeping the code as user friendly as possible.
+
+### Spread Operators
+Spread Operators map an array of parameters to arguments in a function signature. For example:
+```javascript
+function sum2(x, y) {
+    return x + y;
+}
+
+let nums = [1, 2];
+
+console.log(sum2(...nums));
+```
+The nums array is mapped to the x and y arguments in the function declaration by the ...nums variable in the signature.
+
+## String Templates ##
+String Templates offer a much nicer approach to creating strings with dynamic properties. For example:
+```javascript
+let name = 'Rob';
+let colour = 'Red';
+let message = 'Hello my name is ' + name + ' and my favourite colour is ' + colour;
+```
+
+can now become 
+
+```javascript
+let name = 'Rob';
+let colour = 'Red';
+let message = `Hello my name is ${name} and my favourite colour is ${colour}`;
+```
+Simply use the backtick character `` instead of single or double quotes to get started with this.
+
+## Property Shorthand ##
+In situations when returning an object from a function such as:
+```javascript
+function getPerson() {
+
+    let name = 'Rob';
+    let age = 25;
+
+    return {
+        name: name,
+        age: age,
+    };
+}
+```
+If the property being returned is the same name as the property in the function, we can now express this as:
+```javascript
+function getPerson() {
+
+    let name = 'Rob';
+    let age = 25;
+
+    return {
+        name,
+        age,
+    };
+}
+```
+
+## Short Methods ##
+Short methods are great as return properies:
+```javascript
+function getPerson() {
+
+    let name = 'Rob';
+    let age = 25;
+
+    return {
+        name,
+        age,
+        greet() { return `Hello my name ${name} and I am ${age} years old.` }
+    };
+}
+```
+
+## Object Destructuring ##
+Object Destructuring is great for when you want to parse only a few bits of data that matter from an object to a function. Consider the following example:
+```javascript
+let person = {
+    fname: 'Rob',
+    age: 25,
+    moods: ['happy', 'sad', 'angry'],
+    count: 3
+};
+
+function outputPersonNameAndMoods(person) {
+    console.log(person.fname, person.moods);
+}
+
+outputPersonNameAndMoods(person);
+```
+Rather than pass through the entire person object to the function, we can pass through only what matters (fname and moods) with:
+```javascript
+let person = {
+    fname: 'Rob',
+    age: 25,
+    moods: ['happy', 'sad', 'angry'],
+    count: 3
+};
+
+function outputPerson({ fname, moods }) {
+    console.log(fname, moods);
+}
+
+outputPerson(person);
+```
+This also works this way as well:
+```javascript
+let person = {
+    fname: 'Rob',
+    age: 25,
+    moods: ['happy', 'sad', 'angry'],
+    count: 3
+};
+
+let { fname, moods } = person;
+console.log(fname, moods);
+```

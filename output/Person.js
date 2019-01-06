@@ -23,6 +23,8 @@ var Person = function () {
 
 console.log(new Person('Rob Strover').greet());
 
+// ____________________________________________________________________
+
 var TaskCollection = function () {
     function TaskCollection() {
         var tasks = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -44,6 +46,8 @@ var TaskCollection = function () {
     return TaskCollection;
 }();
 
+// ____________________________________________________________________
+
 var Task = function Task() {
     _classCallCheck(this, Task);
 };
@@ -57,3 +61,85 @@ function applyDiscount(cost) {
 }
 
 console.log(applyDiscount(100));
+
+// ____________________________________________________________________
+
+
+function sum() {
+    for (var _len = arguments.length, numbers = Array(_len), _key = 0; _key < _len; _key++) {
+        numbers[_key] = arguments[_key];
+    }
+
+    // return numbers.reduce(function(prev, current) {
+    //     return prev + current;
+    // })
+
+    return numbers.reduce(function (prev, current) {
+        return prev + current;
+    });
+}
+
+console.log(sum(1, 2, 3, 4, 5, 6));
+
+// ____________________________________________________________________
+
+
+function sum2(x, y) {
+    return x + y;
+}
+
+var nums = [1, 2];
+
+console.log(sum2.apply(undefined, nums));
+
+// ____________________________________________________________________
+
+var template = ['<p class="message">', 'Hello my name is Rob', '</p>'].join('');
+
+var name = 'Rob';
+var template2 = '\n    \'<p class="message">\',\n        \'Hello my name is ' + name + '\',\n    \'</p>\'\n';
+
+console.log(template, template2);
+
+// ____________________________________________________________________
+
+function getPerson() {
+
+    var name = 'Rob';
+    var age = 25;
+
+    return {
+        name: name,
+        age: age,
+        greet: function greet() {
+            return 'Hello my name ' + name + ' and I am ' + age + ' years old.';
+        }
+    };
+}
+
+console.log(getPerson().greet());
+
+// ____________________________________________________________________
+
+var person = {
+    fname: 'Rob',
+    age: 25,
+    moods: ['happy', 'sad', 'angry'],
+    count: 3
+};
+
+var moods = person.moods,
+    count = person.count;
+
+console.log(moods, count);
+
+function outputPerson(_ref) {
+    var fname = _ref.fname,
+        moods = _ref.moods;
+
+    console.log(fname, moods);
+}
+
+outputPerson(person);
+
+// ____________________________________________________________________
