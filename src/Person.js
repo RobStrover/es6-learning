@@ -125,3 +125,54 @@ outputPerson(person);
 
 // ____________________________________________________________________
 
+class user {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+
+    static register(...details) {
+        return new user(...details);
+    }
+
+    get getUsername() {
+        return this.username;
+    }
+
+    set setUsername(newUsername) {
+        console.log('Changing the username...');
+        this.username = newUsername;
+    }
+
+    changeEmail(newEmail) {
+        this.email = newEmail;
+    }
+}
+
+let someone = new user('RobStrover', 'blahh@gmail.com');
+someone.changeEmail('robstrover@gmail.com');
+// console.dir(someone);
+console.log(someone);
+
+let someoneElse = user.register('RobStrover2', 'robstrover+01@gmail.com');
+console.log(someoneElse);
+
+console.log(`The username is ${someone.getUsername}`);
+someone.setUsername = 'ATestOfSetters';
+console.log(`The username is now ${someone.getUsername}`);
+
+// ____________________________________________________________________
+
+function log(strategy) {
+    strategy.handle();
+}
+
+class ConsoleLogger{
+    handle() {
+        console.log('Using the console strategy to log');
+    }
+}
+
+
+
+log(new ConsoleLogger);

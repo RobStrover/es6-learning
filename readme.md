@@ -234,3 +234,83 @@ let person = {
 let { fname, moods } = person;
 console.log(fname, moods);
 ```
+## Classes ##
+### Constructors ###
+Classes can now be defined using a similar syntax (including a constructor) to other languages:
+```javascript
+class user {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+}
+```
+This can be called using:
+```javascript
+let someone = new user('RobStrover', 'blahh@gmail.com');
+```
+### Methods ###
+Extra methods can be added like so:
+```javascript
+changeEmail(newEmail) {
+        this.email = newEmail;
+    }
+```
+This will add the function to the prototype behind the scenes. Methods can be called in the same way like this:
+```javascript
+someone.changeEmail('robstrover@gmail.com');
+```
+### Static Functions ###
+Static functions can now also be added:
+```javascript
+class user {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+
+    static register(...details) {
+        return new user(...details);
+    }
+}
+```
+In this example, Rest and Spread operators are used to handle the arguments. This static method can be used like so:
+```javascript
+let someoneElse = user.register('RobStrover2', 'robstrover+01@gmail.com');
+```
+### Getters ###
+Getters can be added to a class like this:
+```javascript
+class user {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+
+    get getUsername() {
+        return this.username;
+    }
+}
+```
+And used without parenthesis, nice and neat in a string template:
+```javascript
+console.log(`The username is ${someone.getUsername}`);
+```
+### Setters ###
+Setters can be added to a class like this:
+```javascript
+class user {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+
+    set setUsername(newUsername) {
+        this.username = newUsername;
+    }
+}
+```
+And then used (again, without parenthesis) like this:
+```javascript
+someone.setUsername = 'ATestOfSetters';
+```

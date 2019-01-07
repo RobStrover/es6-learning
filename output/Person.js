@@ -143,3 +143,76 @@ function outputPerson(_ref) {
 outputPerson(person);
 
 // ____________________________________________________________________
+
+var user = function () {
+    function user(username, email) {
+        _classCallCheck(this, user);
+
+        this.username = username;
+        this.email = email;
+    }
+
+    _createClass(user, [{
+        key: 'changeEmail',
+        value: function changeEmail(newEmail) {
+            this.email = newEmail;
+        }
+    }, {
+        key: 'getUsername',
+        get: function get() {
+            return this.username;
+        }
+    }, {
+        key: 'setUsername',
+        set: function set(newUsername) {
+            console.log('Changing the username...');
+            this.username = newUsername;
+        }
+    }], [{
+        key: 'register',
+        value: function register() {
+            for (var _len2 = arguments.length, details = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                details[_key2] = arguments[_key2];
+            }
+
+            return new (Function.prototype.bind.apply(user, [null].concat(details)))();
+        }
+    }]);
+
+    return user;
+}();
+
+var someone = new user('RobStrover', 'blahh@gmail.com');
+someone.changeEmail('robstrover@gmail.com');
+// console.dir(someone);
+console.log(someone);
+
+var someoneElse = user.register('RobStrover2', 'robstrover+01@gmail.com');
+console.log(someoneElse);
+
+console.log('The username is ' + someone.getUsername);
+someone.setUsername = 'ATestOfSetters';
+console.log('The username is now ' + someone.getUsername);
+
+// ____________________________________________________________________
+
+function log(strategy) {
+    strategy.handle();
+}
+
+var ConsoleLogger = function () {
+    function ConsoleLogger() {
+        _classCallCheck(this, ConsoleLogger);
+    }
+
+    _createClass(ConsoleLogger, [{
+        key: 'handle',
+        value: function handle() {
+            console.log('Using the console strategy to log');
+        }
+    }]);
+
+    return ConsoleLogger;
+}();
+
+log(new ConsoleLogger());
