@@ -314,3 +314,35 @@ And then used (again, without parenthesis) like this:
 ```javascript
 someone.setUsername = 'ATestOfSetters';
 ```
+## Modules ##
+It is possible to export multiple items from a JS file:
+```javascript
+export class TaskCollectionModule {
+    constructor (tasks = []) {
+        this.tasls = tasks;
+    }
+
+    dump() {
+        console.log(this.tasks);
+    }
+}
+
+export let TaskCollectionTitle = 'My task Collection';
+```
+In this example, both the ```TaskCollectionModule``` class and the ```TaskCollectionTitle``` variable are exported.
+These items can then be imported:
+```javascript
+import { TaskCollectionModule, TaskCollectionTitle } from "./modules/TaskCollection";
+```
+In scenarios where you are only exporting one item, you can use the ```default``` keyword:
+```javascript
+export default let TaskCollectionTitle = 'My task Collection';
+```
+Using this means you can then clean up your import:
+```javascript
+import TaskCollectionTitle from "./modules/TaskCollection";
+```
+If you change your mind later and want to export something else as well as the default then simply export it as you did before and use the following as your import:
+```javascript
+import TaskCollectionTitle, { TaskCollectionModule } from "./modules/TaskCollection";
+```

@@ -173,6 +173,16 @@ class ConsoleLogger{
     }
 }
 
-
-
 log(new ConsoleLogger);
+
+// ____________________________________________________________________
+
+import { TaskCollectionModule, TaskCollectionTitle } from "./modules/TaskCollection";
+
+console.log(TaskCollectionTitle);
+
+new TaskCollectionModule([
+    'Go eat some steak.',
+    'Go eat some chips.',
+    'Go eat some cake.'
+]).dump();
